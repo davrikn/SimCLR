@@ -16,9 +16,9 @@ def get_arguments():
     # Initialize parser
     parser = ArgumentParser()
     # Dataset can be provided via command line
-    parser.add_argument("-d", "--dataset", type=str, default="STL10")
+    parser.add_argument("-d", "--dataset", type=str, default="CIFAR10")
     # Input image size
-    parser.add_argument("-img", "--image_size", type=int, default=96)
+    parser.add_argument("-img", "--image_size", type=int, default=32)
     # Input channel size
     parser.add_argument("-ch", "--channel_size", type=int, default=3)
     # GPU device number as in "cuda:0". Defaul is 0.

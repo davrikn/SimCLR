@@ -1,7 +1,7 @@
 # High-level options
 seed: 42                                  # Define the random seed for consistent results.
 mlflow: false                             # Turn on/off mlflow for experiment tracking.
-multi_gpu: true                           # If true, uses DataParallel to distribute computation to multiple GPUs
+multi_gpu: false                           # If true, uses DataParallel to distribute computation to multiple GPUs
 
 # Define model and data options
 model_mode: resnet50                      # If there are multiple models, define which one to use. Three Options: resnet50, resnet18, contrastive_encoder

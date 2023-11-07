@@ -236,7 +236,9 @@ class ContrastiveEncoder:
         Used to load weights saved at the end of the training.
         """
         for model_name in self.model_dict:
-            model = th.load(self._model_path + "/" + model_name + ".pt", map_location=self.device)
+            p = self._model_path + "/" + model_name + ".pt"
+            print(p)
+            model = th.load(p, map_location=self.device)
             setattr(self, model_name, model.eval())
             print(f"--{model_name} is loaded")
         print("Done with loading models.")

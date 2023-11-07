@@ -6,7 +6,7 @@ Version: 0.1
 """
 
 import time
-#import mlflow
+import mlflow
 from src.model import ContrastiveEncoder
 from utils.load_data import Loader
 from utils.arguments import get_arguments, get_config, print_config_summary

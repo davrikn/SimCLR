@@ -4,7 +4,7 @@ resnet18: false                   # If true, it loads resnet18 architecture
 resnet50: true                    # If true, it loads resnet50 architecture
 
 # Any option from here onwards can be changed
-pretrained: false                 # If true, it loads pre-trained resnet models if resnet is being used.
+pretrained: true                 # If true, it loads pre-trained resnet models if resnet is being used.
 projection_dim: 128               # Dimension of the final projection (i.e., output)
 
 # Any option from here onwards can be changed
