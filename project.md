@@ -21,3 +21,22 @@ python embedd_all.py # Embeds the dataset with the encoder and saves it in numpy
 python train_head.py # Trains a prediction head on the embedded representations
 python predict.py # Runs predictions on the embedded representations, and prints the accuracy
 ```
+
+# Using different datasets
+To use any dataset other than CIFAR10 you must run the python files with the -d argument
+The two other datasets supported are
+```
+-d MNIST
+-d STL10    
+```
+Note: MNIST can only be run with the contrastive encoder model_mode parameter (set in runtime.yaml).
+Additionally, the 1st channel must be changed from 3 to 1 since MNIST isn't RGB like the others
+
+# Results
+| Dataset | Model | Accuracy |
+|---|---|---|
+| CIFAR10 | Resnet50 | 56.3%  |
+| MNIST | custom CNN | 95.4% |
+
+We believe that the subpar CIFAR10 results are a result of not enough training and a too simple classification head.
+The same classification head architecture was used on both datasets, and it is a simple network with one hidden layer
