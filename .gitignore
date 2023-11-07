@@ -19,7 +19,8 @@ results/*
 **/__pycache__
 __pycache__/
 *.py[cod]
-
+*.pt
+embeddings
 # C extensions
 *.so
 

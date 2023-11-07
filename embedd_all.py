@@ -2,7 +2,7 @@ import numpy as np
 from src.model import ContrastiveEncoder
 from utils.load_data import Loader
 from utils.arguments import get_config, get_arguments
-
+from utils.utils import path_from_config
 
 def transform_data(data_loader, check_samples=False):
     # Training dataset
@@ -20,22 +20,22 @@ def transform_data(data_loader, check_samples=False):
     # Return arrays
     return Xtrain2D, ytrain, Xtest2D, ytest
 
-config = get_config(get_arguments())
-config["dataset"] = "CIFAR10"
-config["img_size"] = 32
-config["batch_size"] = 1000
+def embed(config, save=True):
+    dataloader = Loader(config, train=False)
+    encoder = ContrastiveEncoder(config)
+    encoder.load_models()
 
-dataloader = Loader(config, train=False)
+    x, y = encoder.predict(dataloader.train_loader)
+    x = np.array(x)
+    y = np.array(y)
 
-t, y, test, ytest = transform_data(dataloader)
+    if save:
+        save_path = path_from_config(config)
+        np.save(f'./embeddings/x{save_path}.npy', x)
+        np.save(f'./embeddings/y{save_path}.npy', y)
+    return x, y
 
-encoder = ContrastiveEncoder(config)
-encoder.load_models()
-
-x, y = encoder.predict(dataloader.train_loader)
-
-x = np.array(x)
-y = np.array(y)
-
-np.save('./x_CIFAR_rnet50.npy', x)
-np.save('./y_CIFAR_rnet50.npy', y)
+if __name__ == "__main__":
+    config = get_config(get_arguments())
+    config["batch_size"] = 1000
+    embed(config)

@@ -1,11 +1,17 @@
 from classification_head import ClassificationHead
-from load_predicted import load
+from load_embeddings import load
+from utils.arguments import get_config, get_arguments
+from utils.utils import path_from_config
 
-x, y = load()
+if __name__ == "__main__":
+    config = get_config(get_arguments())
+    save_path = path_from_config(config)
 
-net = ClassificationHead()
-net.to('cuda')
+    x, y = load(save_path)
 
-net.fit(x, y)
+    net = ClassificationHead(config)
+    net.to('cuda')
 
-net.save()
+    net.fit(x, y)
+
+    net.save()
